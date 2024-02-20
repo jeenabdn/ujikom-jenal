@@ -1,12 +1,16 @@
 <?php
 include '../../koneksi.php';
+session_start();
+
 
 $sql = "SELECT * FROM perpus";
 $result = mysqli_query($koneksi, $sql);
 
-$sql1 = "SELECT * FROM kategori_buku";
+$sql1 = "SELECT * FROM user WHERE role='peminjam'";
 $result1 = mysqli_query($koneksi, $sql1);
 
+$sql2 = "SELECT * FROM buku";
+$result2 = mysqli_query($koneksi, $sql2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +24,53 @@ $result1 = mysqli_query($koneksi, $sql1);
     <meta name="author" content="">
 
     <title>Admin</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 
     <!-- Custom fonts for this template-->
     <link href="../../dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="../../dashboard/stylesheet">
+    <link href="../../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="../dashboard/stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../../dashboard/css/sb-admin-2.min.css" rel="stylesheet">
@@ -31,70 +78,6 @@ $result1 = mysqli_query($koneksi, $sql1);
 </head>
 
 <body id="page-top">
-    <style>
-        .login-container {
-            margin-top: 50px;
-            left: 200px;
-            position: relative;
-        }
-
-        .scrollable-form {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            overflow-y: hidden;
-            /* Menghilangkan scrollbar vertikal */
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-
-
-
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -115,7 +98,7 @@ $result1 = mysqli_query($koneksi, $sql1);
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item ">
-                <a class="nav-link" href="../index.php">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -130,39 +113,47 @@ $result1 = mysqli_query($koneksi, $sql1);
 
             <!-- Nav Item - Pengguna -->
             <li class="nav-item">
-                <a class="nav-link" href="../pengguna.php">
+                <a class="nav-link" href="pengguna.php">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Pengguna</span></a>
             </li>
 
             <!-- Nav Item - Peminjam -->
-            <li class="nav-item">
-                <a class="nav-link" href="../peminjam.php">
+            <li class="nav-item active">
+                <a class="nav-link" href="peminjam.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Peminjam</span></a>
             </li>
 
             <!-- Nav Item - Buku -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../buku.php">
+            <li class="nav-item">
+                <a class="nav-link" href="buku.php">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Buku</span></a>
             </li>
             <!-- Nav Item - ulasan buku -->
             <li class="nav-item">
-                <a class="nav-link" href="../ulasan.php">
+                <a class="nav-link" href="ulasan.php">
                     <i class="fas fa-comments"></i>
                     <span>Ulasan</span></a>
             </li>
             <!-- Nav Item - ulasan buku -->
             <li class="nav-item">
-                <a class="nav-link" href="../kategori.php">
+                <a class="nav-link" href="kategori.php">
                     <i class="fas fa-pen-nib"></i>
                     <span>Kategori</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="laporan.php">
+                    <i class="fas fa-download"></i>
+                    <span>Generete Laporan</span></a>
+            </li>
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
 
 
             <!-- Sidebar Message -->
@@ -212,16 +203,12 @@ $result1 = mysqli_query($koneksi, $sql1);
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
 
                         <!-- Nav Item - User Information -->
-
-                        <!-- Dropdown - User Information -->
                         <li class="nav-item">
                             <a href="../../login.php" class="nav-link" role="button">
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
-                        </li>
                         </li>
 
                     </ul>
@@ -234,6 +221,76 @@ $result1 = mysqli_query($koneksi, $sql1);
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Peminjam</h1>
+                    </div>
+                    <!-- Form -->
+                    <div class="login-container">
+                        <div class="scrollable-form">
+                            <form action="../proses/proses_peminjaman.php" method="post">
+                                <?php
+                                if ($result) {
+                                    echo "<label for='perpustakaan'>Perpustakaan:</label>";
+                                    echo "<select class='form-control' name='perpustakaan' required>";
+                                    echo "<option></option>";
+
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $nama_perpustakaan = $row['nama_perpus'];
+                                        $id_perpus = $row['perpus_id'];
+                                        echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                                    }
+
+                                    echo "</select>";
+                                } else {
+                                    echo "Gagal mengambil data";
+                                }
+                                ?>
+                                <?php
+                                if ($result1) {
+                                    echo "<label for='nama'>Nama:</label>";
+                                    echo "<select class='form-control' name='nama' required>";
+                                    echo "<option value=''></option>";
+
+                                    while ($riw = mysqli_fetch_assoc($result1)) {
+                                        $nama_lengkap = $riw['nama_lengkap'];
+                                        $id_nama = $riw['user_id'];
+                                        echo "<option value='$id_nama'>$nama_lengkap</option>";
+                                    }
+
+                                    echo "</select>";
+                                } else {
+                                    echo "Gagal mengambil data";
+                                }
+                                ?>
+                                <?php
+                                if ($result2) {
+                                    echo "<label for='buku'>Buku:</label>";
+                                    echo "<select class='form-control' name='buku' required>";
+                                    echo "<option value=''></option>";
+
+                                    while ($rew = mysqli_fetch_assoc($result2)) {
+                                        $nama_buku = $rew['judul'];
+                                        $id_buku = $rew['buku_id'];
+                                        echo "<option value='$id_buku'>$nama_buku</option>";
+                                    }
+
+                                    echo "</select>";
+                                } else {
+                                    echo "Gagal mengambil data";
+                                }
+                                ?>
+                                <label for="tanggal_pinjam">Tanggal Pinjam:</label>
+                                <input type="date" id="tanggal_pinjam" name="tanggal_pinjam" required>
+
+                                <div style='display:flex;flex-direction:column'>
+                                    <label for="status_peminjaman">Status:</label>
+                                    <select id="status_peminjaman" name="status" required>
+                                        <option value="dipinjam">Dipinjam</option>
+                                        <option value="dikembalikan">Dikembalikan</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Simpan" style="margin-top: 30px;">
+                            </form>
+                        </div>
                     </div>
 
                     <!-- Content Row -->
@@ -241,57 +298,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="row">
 
-
                             <!-- Books Card Example -->
-                            <div class="login-container col-lg-12" style="height:570px; width: 500px; overflow-y: auto; margin: 0 auto;">
-                            <div class="scrollable-form" style="max-width: 600px; margin: 0 auto;">
-                                    <form action="../../proses/proses_tambah_buku.php" method="post">
-                                        <h1>Tambah buku</h1>
-                                        <?php
-                                        if ($result) {
-                                            echo "<label for='perpustakaan'></label>";
-                                            echo "<select class='form-control mb-2' name='perpustakaan' required>";
-                                            echo "<option>pilih</option>";
-
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                $nama_perpustakaan = $row['nama_perpus'];
-                                                $id_perpus = $row['perpus_id'];
-                                                echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
-                                            }
-
-                                            echo "</select>";
-                                        } else {
-                                            echo "Gagal mengambil data outlet.";
-                                        }
-                                        ?>
-                                        <input type="text" name="judul" placeholder="Judul Buku" required>
-                                        <input type="text" name="penulis" placeholder="Penulis" required>
-                                        <input type="text" name="penerbit" placeholder="Penerbit" required>
-                                        <input type="text" name="tahun_terbit" placeholder="Tahun Terbit" required>
-                                        <?php
-                                        if ($result1) {
-                                            echo "<label for='kategori'></label>";
-                                            echo "<select class='form-control mb-4' name='kategori' required>";
-                                            echo "<option>pilih kategori</option>";
-
-                                            while ($rew = mysqli_fetch_assoc($result1)) {
-                                                $nama_kategori = $rew['nama_kategori'];
-                                                $kategori_id = $rew['kategori_id'];
-                                                echo "<option value='$kategori_id'>$nama_kategori</option>";
-                                            }
-
-                                            echo "</select>";
-                                        } else {
-                                            echo "Gagal mengambil data outlet.";
-                                        }
-                                        ?>
-                                        <button type="submit" name="daftar">Simpan Buku</button>
-                                    </form>
-                                </div>
-                            </div>
-
-
-
 
 
 
@@ -313,7 +320,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                                         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                            <a class="btn btn-primary" href="login.php">Logout</a>
+                                            <a class="btn btn-primary" href="../login.php">Logout</a>
                                         </div>
                                     </div>
                                 </div>

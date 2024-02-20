@@ -3,8 +3,14 @@ include '../koneksi.php';
 $sql = "SELECT * FROM peminjaman WHERE status_peminjaman='pinjam'";
 $result = mysqli_query($koneksi, $sql);
 
-$query = "SELECT buku.*, kategori_buku.nama_kategori FROM buku INNER JOIN kategori_buku ON buku.kategori_id=kategori_buku.kategori_id";
-$result1 = mysqli_query($koneksi, $query);
+$sql1 = "SELECT * FROM user";
+$result1 = mysqli_query($koneksi, $sql1);
+
+$sql2 = "SELECT * FROM peminjaman";
+$result2 = mysqli_query($koneksi, $sql2);
+
+$sql3 = "SELECT * FROM buku";
+$result3 = mysqli_query($koneksi, $sql3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +27,7 @@ $result1 = mysqli_query($koneksi, $query);
 
     <!-- Custom fonts for this template-->
     <link href="../dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="../dashboard/stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link
         href="../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="../dashboard/stylesheet">
@@ -50,7 +57,7 @@ $result1 = mysqli_query($koneksi, $query);
 <hr class="sidebar-divider my-0">
 
 <!-- Nav Item - Dashboard -->
-<li class="nav-item ">
+<li class="nav-item active">
     <a class="nav-link" href="index.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -64,39 +71,12 @@ $result1 = mysqli_query($koneksi, $query);
     Menu
 </div>
 
-<!-- Nav Item - Pengguna -->
-<li class="nav-item">
-    <a class="nav-link" href="pengguna.php">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Pengguna</span></a>
-</li>
-
-<!-- Nav Item - Peminjam -->
-<li class="nav-item">
-    <a class="nav-link" href="peminjam.php">
-        <i class="fas fa-fw fa-users"></i>
-        <span>Peminjam</span></a>
-</li>
-
 <!-- Nav Item - Buku -->
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="buku.php">
         <i class="fas fa-fw fa-book"></i>
         <span>Buku</span></a>
 </li>
-<!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="ulasan.php">
-    <i class="fas fa-comments"></i>
-    <span>Ulasan</span></a>
-</li>
-<!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="kategori.php">
-    <i class="fas fa-pen-nib"></i>
-    <span>Kategori</span></a>
-</li>
-
 <li class="nav-item">
     <a class="nav-link" href="laporan.php">
     <i class="fas fa-download"></i>
@@ -105,6 +85,7 @@ $result1 = mysqli_query($koneksi, $query);
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
+
 
 
 <!-- Sidebar Message -->
@@ -129,7 +110,7 @@ $result1 = mysqli_query($koneksi, $query);
                     </button>
 
                     <!-- Topbar Search -->
-                   
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -158,16 +139,12 @@ $result1 = mysqli_query($koneksi, $query);
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
                         
                         <!-- Nav Item - User Information -->
-                    
-                            <!-- Dropdown - User Information -->
-                            <li class="nav-item">
-                            <a href="../../login.php" class="nav-link" role="button">
+                        <li class="nav-item">
+                            <a href="../login.php" class="nav-link" role="button">
                             <i class="fas fa-sign-out-alt"></i>
                             </a>
-                        </li>
                         </li>
 
                     </ul>
@@ -177,12 +154,8 @@ $result1 = mysqli_query($koneksi, $query);
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
+
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Buku</h1>
-                        <a href="tambah/tambah_buku.php" class="btn btn-primary">Tambah Buku</a>
-                    </div>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -190,46 +163,31 @@ $result1 = mysqli_query($koneksi, $query);
                         <div class="row">
 
 <!-- Books Card Example -->
-
-<section class="content">
-    <div class="container-fluid">
-        <table class="table mb-5" style="margin-top: 20px; margin-left:40px">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul Buku</th>
-                    <th>Pengarang</th>
-                    <th>Penerbit</th>
-                    <th>Tahun Terbit</th>
-                    <th>Kategori</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $i = 0;
-                while ($row = mysqli_fetch_assoc($result1)) :
-                    $i++;
-                ?>
-                    <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $row["judul"]; ?></td>
-                        <td><?php echo $row["penulis"]; ?></td>
-                        <td><?php echo $row["penerbit"]; ?></td>
-                        <td><?php echo $row["tahun_terbit"]; ?></td>
-                        <td><?php echo $row["nama_kategori"]; ?></td>
-                        <td>
-                            <a class="btn btn-primary" href='edit/edit_buku.php?id=<?php echo $row['buku_id']; ?>'>Edit</a>
-                            <a href="hapus/hapus_buku.php?id=<?= $row['buku_id']?>" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus?')">Hapus</a>
-                            <a class="btn btn-" href='tambah/tambah_ulasan.php?php echo $row['buku_id']; ?>Ulas Buku</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+<div class="row mx-auto col-lg-auto">
+    <!-- Buku Card Example -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-3">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Buku</div>
+                            
+                        <!-- Replace the content below with relevant book information -->
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Buku</div>
+                        <span class="info-box-number"><?= mysqli_num_rows($result3); ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
-          
+
+
+</div>
+
+
+
+                    
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -250,7 +208,7 @@ $result1 = mysqli_query($koneksi, $query);
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>

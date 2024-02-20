@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../../koneksi.php';
 $sql = "SELECT * FROM perpus";
 $result = mysqli_query($koneksi, $sql);
@@ -20,9 +20,7 @@ $result = mysqli_query($koneksi, $sql);
 
     <!-- Custom fonts for this template-->
     <link href="../../dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="../../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="../../dashboard/stylesheet">
+    <link href="../../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="../../dashboard/stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../../dashboard/css/sb-admin-2.min.css" rel="stylesheet">
@@ -32,7 +30,7 @@ $result = mysqli_query($koneksi, $sql);
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            
+
             height: 100vh;
         }
 
@@ -58,7 +56,9 @@ $result = mysqli_query($koneksi, $sql);
             margin-bottom: 8px;
         }
 
-        select, input, textarea {
+        select,
+        input,
+        textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 16px;
@@ -87,12 +87,10 @@ $result = mysqli_query($koneksi, $sql);
             color: #333;
         }
 
-        .row{
+        .row {
             justify-content: center;
             flex: .3;
         }
-
-       
     </style>
 </head>
 
@@ -101,78 +99,78 @@ $result = mysqli_query($koneksi, $sql);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-       <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-<!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-    <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
-    </div>
-    <div class="sidebar-brand-text mx-3">Hi admin</div>
-</a>
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Hi admin</div>
+            </a>
 
-<!-- Divider -->
-<hr class="sidebar-divider my-0">
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
 
-<!-- Nav Item - Dashboard -->
-<li class="nav-item ">
-    <a class="nav-link" href="../index.php">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-</li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item ">
+                <a class="nav-link" href="../index.php">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Menu
-</div>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Menu
+            </div>
 
-<!-- Nav Item - Pengguna -->
-<li class="nav-item active">
-    <a class="nav-link" href="../pengguna.php">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Pengguna</span></a>
-</li>
+            <!-- Nav Item - Pengguna -->
+            <li class="nav-item active">
+                <a class="nav-link" href="../pengguna.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Pengguna</span></a>
+            </li>
 
-<!-- Nav Item - Peminjam -->
-<li class="nav-item">
-    <a class="nav-link" href="../peminjam.php">
-        <i class="fas fa-fw fa-users"></i>
-        <span>Peminjam</span></a>
-</li>
+            <!-- Nav Item - Peminjam -->
+            <li class="nav-item">
+                <a class="nav-link" href="../peminjam.php">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Peminjam</span></a>
+            </li>
 
-<!-- Nav Item - Buku -->
-<li class="nav-item">
-    <a class="nav-link" href="../buku.php">
-        <i class="fas fa-fw fa-book"></i>
-        <span>Buku</span></a>
-</li>
-<!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="../ulasan.php">
-    <i class="fas fa-comments"></i>
-    <span>Ulasan</span></a>
-</li>
-<!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="../kategori.php">
-    <i class="fas fa-pen-nib"></i>
-    <span>Kategori</span></a>
-</li>
+            <!-- Nav Item - Buku -->
+            <li class="nav-item">
+                <a class="nav-link" href="../buku.php">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Buku</span></a>
+            </li>
+            <!-- Nav Item - ulasan buku -->
+            <li class="nav-item">
+                <a class="nav-link" href="../ulasan.php">
+                    <i class="fas fa-comments"></i>
+                    <span>Ulasan</span></a>
+            </li>
+            <!-- Nav Item - ulasan buku -->
+            <li class="nav-item">
+                <a class="nav-link" href="../kategori.php">
+                    <i class="fas fa-pen-nib"></i>
+                    <span>Kategori</span></a>
+            </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
-
-
-
-<!-- Sidebar Message -->
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
 
-</ul>
-<!-- End of Sidebar -->
+
+            <!-- Sidebar Message -->
+
+
+        </ul>
+        <!-- End of Sidebar -->
 
 
         <!-- Content Wrapper -->
@@ -190,25 +188,21 @@ $result = mysqli_query($koneksi, $sql);
                     </button>
 
                     <!-- Topbar Search -->
-                   
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -220,13 +214,13 @@ $result = mysqli_query($koneksi, $sql);
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
                         <!-- Nav Item - User Information -->
-                    
-                            <!-- Dropdown - User Information -->
-                            <li class="nav-item">
+
+                        <!-- Dropdown - User Information -->
+                        <li class="nav-item">
                             <a href="../../login.php" class="nav-link" role="button">
-                            <i class="fas fa-sign-out-alt"></i>
+                                <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
                         </li>
@@ -240,93 +234,93 @@ $result = mysqli_query($koneksi, $sql);
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    
+
 
                     <!-- Content Row -->
                     <div class="row">
-<!-- Earnings (Monthly) Card Example -->
-<div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="row">
 
-<!-- Books Card Example -->
-<div class="login-container col-lg-12" style="height:570px">
-        <div class="scrollable-form">
-            <form action="../../proses/proses_registrasi_pengguna.php" method="post">
-                <h1>Tambahakan Akun</h1>
-                <?php
-                    if ($result) {
-                        echo "<label for='perpustakaan'></label>";
-                        echo "<select class='form-control' name='perpustakaan' required>";
-                        echo "<option>Pilih</option>";
+                            <!-- Books Card Example -->
+                            <div class="login-container col-lg-12" style="height:570px; width: 500px; overflow-y: auto;">
+                                <div class="scrollable-form">
+                                    <form action="../../proses/proses_registrasi_pengguna.php" method="post">
+                                        <h1>Tambahkan Akun</h1>
+                                        <?php
+                                        if ($result) {
+                                            echo "<label for='perpustakaan'></label>";
+                                            echo "<select class='form-control' name='perpustakaan' required>";
+                                            echo "<option>Pilih</option>";
 
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $nama_perpustakaan = $row['nama_perpus'];
-                            $id_perpus = $row['id'];
-                            echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
-                        }
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $nama_perpustakaan = $row['nama_perpus'];
+                                                $id_perpus = $row['id'];
+                                                echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                                            }
 
-                        echo "</select>";
-                    } else {
-                        echo "Gagal mengambil data outlet.";
-                    }
-                ?>
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
-                <textarea name="alamat" placeholder="Alamat" required></textarea>
-                <select name="role" id="">
-                    <option value = "admin">admin</option>
-                    <option value = "petugas">petugas</option>
-                    <option value = "peminjam">peminjam</option>
-                </select>
-                <input type="text" name="perpus_id" value="1" style="display: none;">
-                <button type="submit" name="daftar">Daftar</button>
-            </form>
-        </div>
-    </div>
-    </div>
+                                            echo "</select>";
+                                        } else {
+                                            echo "Gagal mengambil data outlet.";
+                                        }
+                                        ?>
+                                        <input type="text" name="username" placeholder="Username" required>
+                                        <input type="password" name="password" placeholder="Password" required>
+                                        <input type="email" name="email" placeholder="Email" required>
+                                        <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
+                                        <textarea name="alamat" placeholder="Alamat" required></textarea>
+                                        <select name="role" id="">
+                                            <option value="admin">admin</option>
+                                            <option value="petugas">petugas</option>
+                                            <option value="peminjam">peminjam</option>
+                                        </select>
+                                        <input type="text" name="perpus_id" value="1" style="display: none;">
+                                        <button type="submit" name="daftar">Daftar</button>
+                                    </form>
+                                </div>
+                            </div>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+                        </div>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <!-- Scroll to Top Button-->
+                        <a class="scroll-to-top rounded" href="#page-top">
+                            <i class="fas fa-angle-up"></i>
+                        </a>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                        <!-- Logout Modal-->
+                        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                        <a class="btn btn-primary" href="login.php">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+                        <!-- Bootstrap core JavaScript-->
+                        <script src="../../vendor/jquery/jquery.min.js"></script>
+                        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../../js/sb-admin-2.min.js"></script>
+                        <!-- Core plugin JavaScript-->
+                        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
+                        <!-- Custom scripts for all pages-->
+                        <script src="../../js/sb-admin-2.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
+                        <!-- Page level plugins -->
+                        <script src="../../vendor/chart.js/Chart.min.js"></script>
+
+                        <!-- Page level custom scripts -->
+                        <script src="../../js/demo/chart-area-demo.js"></script>
+                        <script src="../../js/demo/chart-pie-demo.js"></script>
 
 </body>
 

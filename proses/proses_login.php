@@ -20,7 +20,7 @@ include
         elseif($data['role'] == 'petugas'){
           $_SESSION['id'] = $data['id'];
           $_SESSION['role'] = $data['role'];
-          header('Location: ../admin/index.php');
+          header('Location: ../petugas/index.php');
           //echo"Masuk ke petugas";
         }
         elseif($data['role'] == 'peminjam'){

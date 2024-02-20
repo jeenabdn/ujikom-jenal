@@ -128,37 +128,12 @@ $result1 = mysqli_query($koneksi, $sql1);
                 Menu
             </div>
 
-            <!-- Nav Item - Pengguna -->
-            <li class="nav-item">
-                <a class="nav-link" href="../pengguna.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Pengguna</span></a>
-            </li>
-
-            <!-- Nav Item - Peminjam -->
-            <li class="nav-item">
-                <a class="nav-link" href="../peminjam.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Peminjam</span></a>
-            </li>
 
             <!-- Nav Item - Buku -->
             <li class="nav-item active">
                 <a class="nav-link" href="../buku.php">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Buku</span></a>
-            </li>
-            <!-- Nav Item - ulasan buku -->
-            <li class="nav-item">
-                <a class="nav-link" href="../ulasan.php">
-                    <i class="fas fa-comments"></i>
-                    <span>Ulasan</span></a>
-            </li>
-            <!-- Nav Item - ulasan buku -->
-            <li class="nav-item">
-                <a class="nav-link" href="../kategori.php">
-                    <i class="fas fa-pen-nib"></i>
-                    <span>Kategori</span></a>
             </li>
 
             <!-- Divider -->

@@ -12,7 +12,10 @@ $result2 = mysqli_query($koneksi, $sql2);
 $sql3 = "SELECT * FROM ulasan_buku";
 $result3 = mysqli_query($koneksi, $sql3);
 
-$sql4 = "SELECT ulasan_id.*, perpus.nama_perpus FROM ulasan_buku INNER JOIN  perpus ON user.perpus_id=perpus.perpus_id";
+$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
+         FROM ulasan_buku 
+         INNER JOIN user ON ulasan_buku.user_id = user.user_id
+         INNER JOIN buku ON ulasan_buku.buku_id = buku.buku_id";
 $result4 = mysqli_query($koneksi, $sql4);
 
 ?>
@@ -188,10 +191,12 @@ $result4 = mysqli_query($koneksi, $sql4);
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Ulasan Buku</h1>
+                        <a href="tambah/tambah_ulasan.php" class="btn btn-primary">Tambah Ulasan</a>
                     </div>
 
                     <!-- Content Row -->
@@ -249,25 +254,24 @@ $result4 = mysqli_query($koneksi, $sql4);
       <thead>
         <tr>
          <th>No</th>
-          <th>Penulis</th>
-          <th>buku</th>
+          <th>Nama Pengulas</th>
+          <th>Buku</th>
+          <th>Ulasan</th>
           <th>Rating</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
-      <?php
-$i = 0;
-while ($row = mysqli_fetch_assoc($result4)) :
-    $i++;
-?>
+      <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
     <tr>
-        <td><?php echo $i; ?></td>
-        <td><?php echo $row[""]; ?></td>
-        <td><?php echo $row[""]; ?></td>
-        <td><?php echo $row[""]; ?></td>
+        <td><?= $i; ?></td>
+        <td><?= $row["nama_lengkap"]; ?></td>
+        <td><?= $row["judul"]; ?></td>
+        <td><?= $row["ulasan"]; ?></td>
+        <td><?= $row["rating"]; ?></td>
         <td>
-            <a class="btn btn-primary" href='edit/edit_pengguna.php?id=<?php echo $row['user_id']; ?>'>Edit</a>
-            <a href="hapus/hapus.php ?id=<?= $row['user_id']?>" class="btn btn-danger" onclick="return confirm('apakah kamu yakin ingin menghapus')">Hapus</a>
+            <a class="btn btn-primary" href='edit/edit_pengguna.php?id=<?php echo $row['ulasan_id']; ?>'>Edit</a>
+            <a href="hapus/hapus.php ?id=<?= $row['ulasan_id']?>" class="btn btn-danger" onclick="return confirm('apakah kamu yakin ingin menghapus')">Hapus</a>
         </td>
     </tr>
 <?php endwhile; ?>

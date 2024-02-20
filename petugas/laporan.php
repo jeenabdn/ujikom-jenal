@@ -2,9 +2,6 @@
 include '../koneksi.php';
 $sql = "SELECT * FROM peminjaman WHERE status_peminjaman='pinjam'";
 $result = mysqli_query($koneksi, $sql);
-
-$query = "SELECT buku.*, kategori_buku.nama_kategori FROM buku INNER JOIN kategori_buku ON buku.kategori_id=kategori_buku.kategori_id";
-$result1 = mysqli_query($koneksi, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,41 +60,14 @@ $result1 = mysqli_query($koneksi, $query);
 <div class="sidebar-heading">
     Menu
 </div>
-
-<!-- Nav Item - Pengguna -->
-<li class="nav-item">
-    <a class="nav-link" href="pengguna.php">
-        <i class="fas fa-fw fa-user"></i>
-        <span>Pengguna</span></a>
-</li>
-
-<!-- Nav Item - Peminjam -->
-<li class="nav-item">
-    <a class="nav-link" href="peminjam.php">
-        <i class="fas fa-fw fa-users"></i>
-        <span>Peminjam</span></a>
-</li>
-
 <!-- Nav Item - Buku -->
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="buku.php">
         <i class="fas fa-fw fa-book"></i>
         <span>Buku</span></a>
 </li>
-<!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="ulasan.php">
-    <i class="fas fa-comments"></i>
-    <span>Ulasan</span></a>
-</li>
-<!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="kategori.php">
-    <i class="fas fa-pen-nib"></i>
-    <span>Kategori</span></a>
-</li>
 
-<li class="nav-item">
+<li class="nav-item active">
     <a class="nav-link" href="laporan.php">
     <i class="fas fa-download"></i>
     <span>Generete Laporan</span></a>
@@ -105,6 +75,7 @@ $result1 = mysqli_query($koneksi, $query);
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
+
 
 
 <!-- Sidebar Message -->
@@ -164,7 +135,7 @@ $result1 = mysqli_query($koneksi, $query);
                     
                             <!-- Dropdown - User Information -->
                             <li class="nav-item">
-                            <a href="../../login.php" class="nav-link" role="button">
+                            <a href="../login.php" class="nav-link" role="button">
                             <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
@@ -177,11 +148,10 @@ $result1 = mysqli_query($koneksi, $query);
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
+
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Buku</h1>
-                        <a href="tambah/tambah_buku.php" class="btn btn-primary">Tambah Buku</a>
+                        <h1 class="h3 mb-0 text-gray-800">Laporan</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -191,45 +161,7 @@ $result1 = mysqli_query($koneksi, $query);
 
 <!-- Books Card Example -->
 
-<section class="content">
-    <div class="container-fluid">
-        <table class="table mb-5" style="margin-top: 20px; margin-left:40px">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul Buku</th>
-                    <th>Pengarang</th>
-                    <th>Penerbit</th>
-                    <th>Tahun Terbit</th>
-                    <th>Kategori</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $i = 0;
-                while ($row = mysqli_fetch_assoc($result1)) :
-                    $i++;
-                ?>
-                    <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $row["judul"]; ?></td>
-                        <td><?php echo $row["penulis"]; ?></td>
-                        <td><?php echo $row["penerbit"]; ?></td>
-                        <td><?php echo $row["tahun_terbit"]; ?></td>
-                        <td><?php echo $row["nama_kategori"]; ?></td>
-                        <td>
-                            <a class="btn btn-primary" href='edit/edit_buku.php?id=<?php echo $row['buku_id']; ?>'>Edit</a>
-                            <a href="hapus/hapus_buku.php?id=<?= $row['buku_id']?>" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus?')">Hapus</a>
-                            <a class="btn btn-" href='tambah/tambah_ulasan.php?php echo $row['buku_id']; ?>Ulas Buku</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
-</section>
-          
+                    
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -250,28 +182,28 @@ $result1 = mysqli_query($koneksi, $query);
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
 

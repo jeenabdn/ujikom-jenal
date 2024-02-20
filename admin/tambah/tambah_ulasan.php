@@ -1,10 +1,10 @@
 <?php 
-include '../koneksi.php';
+include '../../koneksi.php';
 $sql = "SELECT * FROM peminjaman WHERE status_peminjaman='pinjam'";
 $result = mysqli_query($koneksi, $sql);
 
-$query = "SELECT buku.*, kategori_buku.nama_kategori FROM buku INNER JOIN kategori_buku ON buku.kategori_id=kategori_buku.kategori_id";
-$result1 = mysqli_query($koneksi, $query);
+$sql1 = "SELECT * FROM user WHERE role='peminjam'";
+$result1= mysqli_query($koneksi, $sql1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +20,13 @@ $result1 = mysqli_query($koneksi, $query);
     <title>Admin</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="../dashboard/stylesheet">
+        href="../../dashboard/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="../../dashboard/stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../dashboard/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../dashboard/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -51,7 +51,7 @@ $result1 = mysqli_query($koneksi, $query);
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item ">
-    <a class="nav-link" href="index.php">
+    <a class="nav-link" href="../index.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -66,45 +66,46 @@ $result1 = mysqli_query($koneksi, $query);
 
 <!-- Nav Item - Pengguna -->
 <li class="nav-item">
-    <a class="nav-link" href="pengguna.php">
+    <a class="nav-link" href="../pengguna.php">
         <i class="fas fa-fw fa-user"></i>
         <span>Pengguna</span></a>
 </li>
 
 <!-- Nav Item - Peminjam -->
 <li class="nav-item">
-    <a class="nav-link" href="peminjam.php">
+    <a class="nav-link" href="../peminjam.php">
         <i class="fas fa-fw fa-users"></i>
         <span>Peminjam</span></a>
 </li>
 
 <!-- Nav Item - Buku -->
-<li class="nav-item active">
-    <a class="nav-link" href="buku.php">
+<li class="nav-item">
+    <a class="nav-link" href="../buku.php">
         <i class="fas fa-fw fa-book"></i>
         <span>Buku</span></a>
 </li>
 <!-- Nav Item - ulasan buku -->
-<li class="nav-item">
-    <a class="nav-link" href="ulasan.php">
+<li class="nav-item ">
+    <a class="nav-link active" href="../ulasan.php">
     <i class="fas fa-comments"></i>
     <span>Ulasan</span></a>
 </li>
 <!-- Nav Item - ulasan buku -->
 <li class="nav-item">
-    <a class="nav-link" href="kategori.php">
+    <a class="nav-link" href="../kategori.php">
     <i class="fas fa-pen-nib"></i>
     <span>Kategori</span></a>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="laporan.php">
+<li class="nav-item ">
+    <a class="nav-link" href="../laporan.php">
     <i class="fas fa-download"></i>
     <span>Generete Laporan</span></a>
 </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
+
 
 
 <!-- Sidebar Message -->
@@ -164,7 +165,7 @@ $result1 = mysqli_query($koneksi, $query);
                     
                             <!-- Dropdown - User Information -->
                             <li class="nav-item">
-                            <a href="../../login.php" class="nav-link" role="button">
+                            <a href="../login.php" class="nav-link" role="button">
                             <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
@@ -177,11 +178,10 @@ $result1 = mysqli_query($koneksi, $query);
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
+
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Buku</h1>
-                        <a href="tambah/tambah_buku.php" class="btn btn-primary">Tambah Buku</a>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Ulasan</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -191,45 +191,45 @@ $result1 = mysqli_query($koneksi, $query);
 
 <!-- Books Card Example -->
 
-<section class="content">
-    <div class="container-fluid">
-        <table class="table mb-5" style="margin-top: 20px; margin-left:40px">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul Buku</th>
-                    <th>Pengarang</th>
-                    <th>Penerbit</th>
-                    <th>Tahun Terbit</th>
-                    <th>Kategori</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $i = 0;
-                while ($row = mysqli_fetch_assoc($result1)) :
-                    $i++;
-                ?>
-                    <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $row["judul"]; ?></td>
-                        <td><?php echo $row["penulis"]; ?></td>
-                        <td><?php echo $row["penerbit"]; ?></td>
-                        <td><?php echo $row["tahun_terbit"]; ?></td>
-                        <td><?php echo $row["nama_kategori"]; ?></td>
-                        <td>
-                            <a class="btn btn-primary" href='edit/edit_buku.php?id=<?php echo $row['buku_id']; ?>'>Edit</a>
-                            <a href="hapus/hapus_buku.php?id=<?= $row['buku_id']?>" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus?')">Hapus</a>
-                            <a class="btn btn-" href='tambah/tambah_ulasan.php?php echo $row['buku_id']; ?>Ulas Buku</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
-</section>
-          
+<form action="../proses/proses_ulasan.php" method="post">
+<?php
+            if ($result) {
+                echo "<label for='buku'>Nama Lengkap :</label>";
+                echo "<select class='form-control' name='buku' required>";
+                echo "<option value=''></option>";
+
+                while ($rew = mysqli_fetch_assoc($result1)) {
+                    $nama_buku = $rew['judul'];
+                    $id_buku = $rew['buku_id'];
+                    echo "<option value='$id_buku'>$nama_buku</option>";
+                    }
+
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+   <?php
+            if ($result2) {
+                echo "<label for='buku'>Penulis :</label>";
+                echo "<select class='form-control' name='buku' required>";
+                echo "<option value=''></option>";
+
+                while ($rew = mysqli_fetch_assoc($result2)) {
+                    $nama_buku = $rew['penulis'];
+                    $id_buku = $rew['buku_id'];
+                    echo "<option value='$id_buku'>$nama_buku</option>";
+                    }
+
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+    <label for="rating">Rating:</label><br>
+    <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+    <input type="submit" value="Submit">
+</form>        
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -257,21 +257,21 @@ $result1 = mysqli_query($koneksi, $query);
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>
+    <script src="../../js/demo/chart-pie-demo.js"></script>
 
 </body>
 
