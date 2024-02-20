@@ -156,7 +156,9 @@ $result3 = mysqli_query($koneksi, $sql3);
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-
+                    <div class="container-fluid">
+                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
+                    <h1>Dashboard</h1>
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Earnings (Monthly) Card Example -->

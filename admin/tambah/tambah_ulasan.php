@@ -5,6 +5,12 @@ $result = mysqli_query($koneksi, $sql);
 
 $sql1 = "SELECT * FROM user WHERE role='peminjam'";
 $result1= mysqli_query($koneksi, $sql1);
+
+$sql2 = "SELECT * FROM buku";
+$result2 = mysqli_query($koneksi, $sql2);
+
+$sql3 = "SELECT * FROM buku WHERE penulis";
+$result3 = mysqli_query($koneksi, $sql3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,11 +103,7 @@ $result1= mysqli_query($koneksi, $sql1);
     <span>Kategori</span></a>
 </li>
 
-<li class="nav-item ">
-    <a class="nav-link" href="../laporan.php">
-    <i class="fas fa-download"></i>
-    <span>Generete Laporan</span></a>
-</li>
+
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
@@ -191,14 +193,14 @@ $result1= mysqli_query($koneksi, $sql1);
 
 <!-- Books Card Example -->
 
-<form action="../proses/proses_ulasan.php" method="post">
+<form action="../../proses/proses_ulasan.php" method="post">
 <?php
             if ($result) {
-                echo "<label for='buku'>Nama Lengkap :</label>";
+                echo "<label for='buku'>Judul Buku :</label>";
                 echo "<select class='form-control' name='buku' required>";
                 echo "<option value=''></option>";
 
-                while ($rew = mysqli_fetch_assoc($result1)) {
+                while ($rew = mysqli_fetch_assoc($result2)) {
                     $nama_buku = $rew['judul'];
                     $id_buku = $rew['buku_id'];
                     echo "<option value='$id_buku'>$nama_buku</option>";
@@ -210,12 +212,12 @@ $result1= mysqli_query($koneksi, $sql1);
                 }
         ?>
    <?php
-            if ($result2) {
+            if ($result3) {
                 echo "<label for='buku'>Penulis :</label>";
                 echo "<select class='form-control' name='buku' required>";
                 echo "<option value=''></option>";
 
-                while ($rew = mysqli_fetch_assoc($result2)) {
+                while ($rew = mysqli_fetch_assoc($result3)) {
                     $nama_buku = $rew['penulis'];
                     $id_buku = $rew['buku_id'];
                     echo "<option value='$id_buku'>$nama_buku</option>";

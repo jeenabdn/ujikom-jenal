@@ -243,7 +243,7 @@ $result1 = mysqli_query($koneksi, $sql1);
 
 
                             <!-- Books Card Example -->
-                            <div class="login-container col-lg-12" style="height:570px; width: 500px; overflow-y: auto; margin: 0 auto;">
+                            <div class="login-container col-lg-12" style="height:570px; width: 500px; overflow-y: auto; margin: 0 auto; margin-left:100px ;">
                             <div class="scrollable-form" style="max-width: 600px; margin: 0 auto;">
                                     <form action="../../proses/proses_tambah_buku.php" method="post">
                                         <h1>Tambah buku</h1>

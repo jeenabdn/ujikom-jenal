@@ -1,5 +1,5 @@
 <?php 
-include '../koneksi.php';
+include 'koneksi.php';
 $sql = "SELECT * FROM perpus";
 $result = mysqli_query($koneksi, $sql);
 ?>
@@ -82,7 +82,7 @@ $result = mysqli_query($koneksi, $sql);
                     if ($result) {
                         echo "<label for='perpustakaan'></label>";
                         echo "<select class='form-control' name='perpustakaan' required>";
-                        echo "<option>pilih</option>";
+                        echo "<option>Pilih</option>";
 
                         while ($row = mysqli_fetch_assoc($result)) {
                             $nama_perpustakaan = $row['nama_perpus'];

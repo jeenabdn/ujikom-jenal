@@ -111,11 +111,6 @@ $result4 = mysqli_query($koneksi, $sql4);
     <span>Kategori</span></a>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="laporan.php">
-    <i class="fas fa-download"></i>
-    <span>Generete Laporan</span></a>
-</li>
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 
@@ -270,8 +265,7 @@ $result4 = mysqli_query($koneksi, $sql4);
         <td><?= $row["ulasan"]; ?></td>
         <td><?= $row["rating"]; ?></td>
         <td>
-            <a class="btn btn-primary" href='edit/edit_pengguna.php?id=<?php echo $row['ulasan_id']; ?>'>Edit</a>
-            <a href="hapus/hapus.php ?id=<?= $row['ulasan_id']?>" class="btn btn-danger" onclick="return confirm('apakah kamu yakin ingin menghapus')">Hapus</a>
+            <a href="hapus/hapus_ulasan.php ?id=<?= $row['ulasan_id']?>" class="btn btn-danger" onclick="return confirm('apakah kamu yakin ingin menghapus')">Hapus</a>
         </td>
     </tr>
 <?php endwhile; ?>

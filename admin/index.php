@@ -11,6 +11,14 @@ $result2 = mysqli_query($koneksi, $sql2);
 
 $sql3 = "SELECT * FROM buku";
 $result3 = mysqli_query($koneksi, $sql3);
+
+$sql4 = "SELECT peminjaman.*, user.nama_lengkap, buku.judul, perpus.nama_perpus 
+         FROM peminjaman
+        INNER JOIN user ON peminjaman.user_id =user.user_id
+        INNER JOIN buku ON peminjaman.buku_id =buku.buku_id
+        INNER JOIN perpus ON peminjaman.perpus_id =perpus.perpus_id";
+$result4 = mysqli_query($koneksi, $sql4);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,11 +111,6 @@ $result3 = mysqli_query($koneksi, $sql3);
     <i class="fas fa-pen-nib"></i>
     <span>Kategori</span></a>
 </li>
-<li class="nav-item">
-    <a class="nav-link" href="laporan.php">
-    <i class="fas fa-download"></i>
-    <span>Generete Laporan</span></a>
-</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
@@ -182,7 +185,11 @@ $result3 = mysqli_query($koneksi, $sql3);
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-
+                    <div class="container-fluid">
+                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
+                    <h1>Dashboard</h1>
+                    <!-- Page Heading -->
+                   
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
@@ -250,9 +257,43 @@ $result3 = mysqli_query($koneksi, $sql3);
 
 
 </div>
-
-
-
+<section class="content">
+    <div class="container-fluid">
+        
+<div>
+<table class="table" style="margin-top:30px;width:90%; position:relative;left:50px;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Perpustakaan</th>
+                <th>Nama</th>
+                <th>Buku</th>
+                <th>Tanggal_peminjaman</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i=0; while ($row = mysqli_fetch_assoc($result4)) :  $i++; ?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td><?= $row['nama_perpus'] ?></td>
+                    <td><?= $row['nama_lengkap'] ?></td>
+                    <td><?= $row['judul'] ?></td>
+                    <td><?= $row['tgl_peminjaman'] ?></td>
+                    <td><?= $row['status_peminjaman']?></td>
+                    <td>
+                        <a href="../edit/edit_peminjaman.php?id=<?= $row['peminjaman_id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="hapus/hapus_peminjam.php?id=<?= $row['peminjaman_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a> 
+                        <a href="../proses/download.php?id=<?= $row['peminjaman_id'] ?>" class="btn btn-success btn-sm">Generete Laporan</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+    </div>
+    </div>
+</section>
                     
 
     <!-- Scroll to Top Button-->

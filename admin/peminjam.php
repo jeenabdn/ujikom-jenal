@@ -144,12 +144,6 @@ $result2 = mysqli_query($koneksi, $sql2);
                     <span>Kategori</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="laporan.php">
-                    <i class="fas fa-download"></i>
-                    <span>Generete Laporan</span></a>
-            </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -206,7 +200,7 @@ $result2 = mysqli_query($koneksi, $sql2);
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item">
-                            <a href="../login.php" class="nav-link" role="button">
+                            <a href="../../login.php" class="nav-link" role="button">
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
@@ -218,14 +212,79 @@ $result2 = mysqli_query($koneksi, $sql2);
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <div class="content-wrape shadow shadow p-3 m-5 bg-body-tertiary">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Peminjam</h1>
-                        <a href="tambah/tambah_peminjam.php" class="btn btn-primary">Tambah Peminjam</a>
-                    </div>
-                    <!-- Form -->
+               
 
+                    <!-- Page Heading -->
+                
+                    <!-- Form -->
+                    <div class="login-container">
+                        <div class="scrollable-form">
+                            <form action="../proses/proses_peminjaman.php" method="post">
+                                <?php
+                                if ($result) {
+                                    echo "<label for='perpustakaan'>Perpustakaan:</label>";
+                                    echo "<select class='form-control' name='perpustakaan' required>";
+                                    echo "<option></option>";
+
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $nama_perpustakaan = $row['nama_perpus'];
+                                        $id_perpus = $row['perpus_id'];
+                                        echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                                    }
+
+                                    echo "</select>";
+                                } else {
+                                    echo "Gagal mengambil data";
+                                }
+                                ?>
+                                <?php
+                                if ($result1) {
+                                    echo "<label for='nama'>Nama:</label>";
+                                    echo "<select class='form-control' name='nama' required>";
+                                    echo "<option value=''></option>";
+
+                                    while ($riw = mysqli_fetch_assoc($result1)) {
+                                        $nama_lengkap = $riw['nama_lengkap'];
+                                        $id_nama = $riw['user_id'];
+                                        echo "<option value='$id_nama'>$nama_lengkap</option>";
+                                    }
+
+                                    echo "</select>";
+                                } else {
+                                    echo "Gagal mengambil data";
+                                }
+                                ?>
+                                <?php
+                                if ($result2) {
+                                    echo "<label for='buku'>Buku:</label>";
+                                    echo "<select class='form-control' name='buku' required>";
+                                    echo "<option value=''></option>";
+
+                                    while ($rew = mysqli_fetch_assoc($result2)) {
+                                        $nama_buku = $rew['judul'];
+                                        $id_buku = $rew['buku_id'];
+                                        echo "<option value='$id_buku'>$nama_buku</option>";
+                                    }
+
+                                    echo "</select>";
+                                } else {
+                                    echo "Gagal mengambil data";
+                                }
+                                ?>
+                                <label for="tanggal_pinjam">Tanggal Pinjam:</label>
+                                <input type="date" id="tanggal_pinjam" name="tanggal_pinjam" required>
+
+                                <div style='display:flex;flex-direction:column'>
+                                    <label for="status_peminjaman">Status:</label>
+                                    <select id="status_peminjaman" name="status" required>
+                                        <option value="dipinjam">Dipinjam</option>
+                                        <option value="dikembalikan">Dikembalikan</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Simpan" style="margin-top: 30px;">
+                            </form>
+                        </div>
+                    </div>
 
                     <!-- Content Row -->
                     <div class="row">

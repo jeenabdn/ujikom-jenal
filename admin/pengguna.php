@@ -95,11 +95,6 @@ $result = mysqli_query($koneksi, $sql);
     <span>Kategori</span></a>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link" href="laporan.php">
-    <i class="fas fa-download"></i>
-    <span>Generete Laporan</span></a>
-</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
